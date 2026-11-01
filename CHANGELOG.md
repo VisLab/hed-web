@@ -7,9 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Tests of the four page flows against hed-validator.
+
 ### Changed
 
 - The HED schema version box on the string, sidecar and file pages also accepts bracketed and quoted lists such as `[score_2.2.0, lang_1.2.0]`, and reports malformed lists before validating ([#96](https://github.com/hed-standard/hed-web/issues/96)).
+- Deploy runs the tests first; CI and deploy use npm ci.
 
 ## [1.0.0] - 2026-05-19
 
