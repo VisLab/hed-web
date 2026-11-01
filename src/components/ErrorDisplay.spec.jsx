@@ -35,10 +35,11 @@ describe("ErrorDisplay", () => {
   });
 
   it("shows validation issues when errors are provided", async () => {
-    const errors = [{ message: "TEST_ERROR", severity: "error" }];
+    const errors = [{ issueMessage: "TEST_ERROR", severity: "error" }];
     await renderComponent(
       <ErrorDisplay errors={errors} downloadableErrors={errors} />
     );
     expect(container.textContent).toContain("Validation Issues Found");
+    expect(container.textContent).toContain("TEST_ERROR");
   });
 });
