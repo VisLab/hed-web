@@ -40,6 +40,11 @@ export function parseHedVersionInput(text) {
       entry = entry.slice(1, -1).trim();
       if (!entry) continue;
     }
+    if (/["']/.test(entry)) {
+      return {
+        error: `Schema version list: entry ${entry} has unmatched quotes.`,
+      };
+    }
 
     if (/\s/.test(entry)) {
       return {

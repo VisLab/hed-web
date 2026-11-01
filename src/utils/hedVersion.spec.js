@@ -32,6 +32,8 @@ describe("parseHedVersionInput", () => {
       ["[[8.4.0]]", /nested brackets/],
       ['["8.4.0]', /unmatched quotes/],
       ["\"8.4.0'", /unmatched quotes/],
+      ['["8.4.0""]', /unmatched quotes/],
+      ['[8.4".0]', /unmatched quotes/],
       ["score_2.2.0 lang_1.2.0", /separate versions with commas/],
       ["[]", /is empty/],
       ["[ , ]", /is empty/],
