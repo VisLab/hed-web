@@ -212,7 +212,18 @@ describe("dataset page", () => {
 });
 
 describe("schema version", () => {
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
+
+  // 9.9.9 is not bundled, so hed-validator fetches it from GitHub. The fetch is
+  // stubbed with a 404 so the test does not depend on the network.
   it("throws SCHEMA_LOAD_FAILED for version 9.9.9", async () => {
+    const fetchSpy = vi
+      .spyOn(globalThis, "fetch")
+      .mockResolvedValue(
+        new Response(null, { status: 404, statusText: "Not Found" }),
+      );
     const { versions } = parseHedVersionInput("9.9.9");
     let thrown;
     try {
@@ -220,6 +231,7 @@ describe("schema version", () => {
     } catch (err) {
       thrown = err;
     }
+    expect(fetchSpy).toHaveBeenCalledTimes(1);
     expect(thrown).toBeInstanceOf(IssueError);
     expect(thrown.issue.hedCode).toBe("SCHEMA_LOAD_FAILED");
   });
