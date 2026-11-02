@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Tests of the four page flows against hed-validator.
+- A ? help button beside each input on the validation pages.
 
 ### Changed
 

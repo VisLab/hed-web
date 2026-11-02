@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { createRoot } from "react-dom/client";
 import { ErrorDisplay } from "./components/ErrorDisplay";
+import { HelpButton } from "./components/HelpButton";
 import {
   buildSchemasFromVersion,
   parseStandaloneString,
@@ -113,12 +114,15 @@ function ValidateStringApp() {
           <div className="flex flex-col gap-6">
             {/* HED String textarea */}
             <div>
-              <label
-                htmlFor="hed-string-input"
-                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
-              >
-                HED String
-              </label>
+              <div className="flex items-center mb-2">
+                <label
+                  htmlFor="hed-string-input"
+                  className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+                >
+                  HED String
+                </label>
+                <HelpButton helpKey="hed_string" />
+              </div>
               <textarea
                 id="hed-string-input"
                 value={hedString}
@@ -132,12 +136,15 @@ function ValidateStringApp() {
             {/* HED version and options */}
             <div className="flex flex-wrap gap-6 items-center">
               <div className="flex items-center gap-3">
-                <label
-                  htmlFor="hed-version"
-                  className="text-gray-600 dark:text-gray-400 whitespace-nowrap"
-                >
-                  HED schema version
-                </label>
+                <div className="flex items-center">
+                  <label
+                    htmlFor="hed-version"
+                    className="text-gray-600 dark:text-gray-400 whitespace-nowrap"
+                  >
+                    HED schema version
+                  </label>
+                  <HelpButton helpKey="hed_version" />
+                </div>
                 <input
                   id="hed-version"
                   type="text"
@@ -163,6 +170,7 @@ function ValidateStringApp() {
                 >
                   Check warnings
                 </label>
+                <HelpButton helpKey="check_warnings" />
               </div>
             </div>
 

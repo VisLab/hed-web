@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
+import { HelpButton } from './HelpButton'
 
 // A reusable file input component with updated layout and styling
-export const FileInput = ({ id, buttonText, tooltip, accept, onFileSelect, isLoading }) => {
+export const FileInput = ({ id, buttonText, tooltip, helpKey, accept, onFileSelect, isLoading }) => {
   const [fileName, setFileName] = useState('')
 
   const handleFileChange = (e) => {
@@ -40,6 +41,7 @@ export const FileInput = ({ id, buttonText, tooltip, accept, onFileSelect, isLoa
       >
         {buttonText}
       </label>
+      {helpKey && <HelpButton helpKey={helpKey} />}
       <input type="file" id={id} accept={accept} className="hidden" onChange={handleFileChange} disabled={isLoading} />
 
       {/* 2. The filename message, now with a title attribute for the tooltip */}

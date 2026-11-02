@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { createRoot } from "react-dom/client";
 import { FileInput } from "./components/FileInput";
 import { ErrorDisplay } from "./components/ErrorDisplay";
+import { HelpButton } from "./components/HelpButton";
 import {
   BidsHedIssue,
   BidsJsonFile,
@@ -161,6 +162,7 @@ function ValidateFileApp() {
                 id="tsv-upload"
                 buttonText="TSV file"
                 tooltip="Upload a BIDS tabular (.tsv) file"
+                helpKey="events_file"
                 accept=".tsv"
                 onFileSelect={setTsvFile}
                 isLoading={isLoading}
@@ -170,6 +172,7 @@ function ValidateFileApp() {
                 id="json-upload"
                 buttonText="JSON file"
                 tooltip="Upload a JSON sidecar file corresponding to the tsv file"
+                helpKey="sidecar_file"
                 accept=".json"
                 onFileSelect={setJsonFile}
                 isLoading={isLoading}
@@ -180,12 +183,15 @@ function ValidateFileApp() {
           {/* HED Version Input */}
           <div className="mt-6 flex justify-center">
             <div className="flex items-center w-full max-w-md gap-4">
-              <label
-                htmlFor="hed-version"
-                className="text-gray-600 dark:text-gray-400 whitespace-nowrap"
-              >
-                HED schema version
-              </label>
+              <div className="flex items-center">
+                <label
+                  htmlFor="hed-version"
+                  className="text-gray-600 dark:text-gray-400 whitespace-nowrap"
+                >
+                  HED schema version
+                </label>
+                <HelpButton helpKey="hed_version" />
+              </div>
               <input
                 id="hed-version"
                 type="text"
@@ -214,6 +220,7 @@ function ValidateFileApp() {
               >
                 Check warnings
               </label>
+              <HelpButton helpKey="check_warnings" />
             </div>
             <div className="flex items-center">
               <input
@@ -229,6 +236,7 @@ function ValidateFileApp() {
               >
                 Limit errors
               </label>
+              <HelpButton helpKey="limit_errors" />
             </div>
           </div>
 
