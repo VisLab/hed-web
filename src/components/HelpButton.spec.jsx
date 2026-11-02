@@ -21,7 +21,11 @@ describe("HelpButton", () => {
   });
 
   afterEach(() => {
-    act(() => root.unmount());
+    // The unknown-key test renders to a string and creates no root.
+    if (root) {
+      act(() => root.unmount());
+      root = undefined;
+    }
     document.body.removeChild(container);
   });
 
@@ -148,6 +152,34 @@ describe("HelpButton", () => {
     await click(helpButtons()[0]);
     expect(fileClicks).not.toHaveBeenCalled();
     expect(container.querySelector("[role='tooltip']")).not.toBeNull();
+  });
+
+  it("keeps the open panel inside the window, also after a resize", async () => {
+    // jsdom does no layout, so stub the wrapper's position and the panel's width.
+    const widthDescriptor = Object.getOwnPropertyDescriptor(HTMLElement.prototype, "offsetWidth");
+    const innerWidth = window.innerWidth;
+    vi.spyOn(HTMLElement.prototype, "getBoundingClientRect").mockReturnValue({
+      left: 300, right: 320, top: 0, bottom: 20, width: 20, height: 20, x: 300, y: 0,
+    });
+    Object.defineProperty(HTMLElement.prototype, "offsetWidth", { configurable: true, get: () => 288 });
+    try {
+      window.innerWidth = 400;
+      await renderComponent(<HelpButton helpKey="limit_errors" />);
+      await click(helpButtons()[0]);
+      const panel = () => container.querySelector("[role='tooltip']");
+      // 300 + 288 - (400 - 8) = 196 pixels past the edge.
+      expect(panel().style.transform).toBe("translateX(-196px)");
+
+      window.innerWidth = 1024;
+      await act(async () => {
+        window.dispatchEvent(new Event("resize"));
+      });
+      expect(panel().style.transform).toBe("");
+    } finally {
+      window.innerWidth = innerWidth;
+      Object.defineProperty(HTMLElement.prototype, "offsetWidth", widthDescriptor);
+      vi.restoreAllMocks();
+    }
   });
 
   it("throws for an unknown key", () => {

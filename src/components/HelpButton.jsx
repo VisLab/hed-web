@@ -37,15 +37,24 @@ export const HelpButton = ({ helpKey }) => {
     }
   }, [open])
 
-  // Keep the open panel inside the window, for buttons near the right edge.
+  // Keep the open panel inside the window, for buttons near the right edge,
+  // also after a resize or rotation. The panel's left edge is the wrapper's
+  // left edge, so measure the wrapper (never transformed) and the panel's
+  // width, not the panel's shifted position.
   useLayoutEffect(() => {
-    if (!open || !panelRef.current) {
+    if (!open) {
       setShift(0)
-      return
+      return undefined
     }
-    const rect = panelRef.current.getBoundingClientRect()
-    const overflow = rect.right - (window.innerWidth - EDGE_GAP)
-    setShift(overflow > 0 ? Math.min(overflow, rect.left - EDGE_GAP) : 0)
+    const place = () => {
+      if (!wrapperRef.current || !panelRef.current) return
+      const left = wrapperRef.current.getBoundingClientRect().left
+      const overflow = left + panelRef.current.offsetWidth - (window.innerWidth - EDGE_GAP)
+      setShift(overflow > 0 ? Math.max(0, Math.min(overflow, left - EDGE_GAP)) : 0)
+    }
+    place()
+    window.addEventListener('resize', place)
+    return () => window.removeEventListener('resize', place)
   }, [open])
 
   if (!Object.hasOwn(helpText.entries, helpKey)) {
