@@ -1,0 +1,33 @@
+{
+  "_comment": "Help text for the ? buttons on the validation pages. Keys are sorted alphabetically. Each entry has a title and a text, both plain text (no HTML), ASCII only. Rebuild and deploy after an edit; npm test checks this file.",
+  "entries": {
+    "check_warnings": {
+      "title": "Check warnings",
+      "text": "When on, validation also reports HED warnings, such as deprecated tags, in addition to errors."
+    },
+    "dataset_root": {
+      "title": "Dataset root",
+      "text": "Choose the top folder of a BIDS dataset, the one that holds dataset_description.json. The HED schema version is taken from HEDVersion in that file. The files are read in your browser and are not uploaded anywhere."
+    },
+    "events_file": {
+      "title": "Tabular (.tsv) file",
+      "text": "A BIDS-style tab-separated file whose first line holds the column names. HED comes from its HED column and from the JSON sidecar. The value n/a marks a missing value."
+    },
+    "hed_string": {
+      "title": "HED string",
+      "text": "Enter one HED string to validate, for example Sensory-event, (Red, Large). The whole box is validated as a single string."
+    },
+    "hed_version": {
+      "title": "HED schema version",
+      "text": "The HED schema version to validate against, for example 8.4.0. For library schemas give a list, such as score_2.2.0, lang_1.2.0 or [score_2.2.0, lang_1.2.0]. Versions not built into this page are downloaded from GitHub."
+    },
+    "limit_errors": {
+      "title": "Limit errors",
+      "text": "When on, the list shows one issue of each type, with a count of how many there are and in how many files. Download Errors still saves the full list."
+    },
+    "sidecar_file": {
+      "title": "JSON sidecar",
+      "text": "A BIDS-style JSON sidecar that maps column values in the tabular file to HED annotation strings. HED definitions can be included in the sidecar to provide named, reusable tag groups."
+    }
+  }
+}

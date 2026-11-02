@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
+import { HelpButton } from './HelpButton'
 
-export const FolderInput = ({ id, buttonText, tooltip, onFolderSelect, isLoading }) => {
+export const FolderInput = ({ id, buttonText, tooltip, helpKey, onFolderSelect, isLoading }) => {
   const [folderName, setFolderName] = useState('')
 
   const handleFolderChange = (e) => {
@@ -38,6 +39,7 @@ export const FolderInput = ({ id, buttonText, tooltip, onFolderSelect, isLoading
       >
         {buttonText}
       </label>
+      {helpKey && <HelpButton helpKey={helpKey} />}
       <input
         type="file"
         id={id}

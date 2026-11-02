@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { createRoot } from "react-dom/client";
 import { FolderInput } from "./components/FolderInput";
 import { ErrorDisplay } from "./components/ErrorDisplay";
+import { HelpButton } from "./components/HelpButton";
 import {
   BidsWebAccessor,
   BidsDataset,
@@ -201,6 +202,7 @@ function ValidateDatasetApp() {
               id="folder-upload"
               buttonText="Dataset root"
               tooltip="Choose a BIDS dataset root directory"
+              helpKey="dataset_root"
               onFolderSelect={handleFolderSelect}
               isLoading={isLoading}
             />
@@ -221,6 +223,7 @@ function ValidateDatasetApp() {
               >
                 Check warnings
               </label>
+              <HelpButton helpKey="check_warnings" />
             </div>
             <div className="flex items-center">
               <input
@@ -236,6 +239,7 @@ function ValidateDatasetApp() {
               >
                 Limit errors
               </label>
+              <HelpButton helpKey="limit_errors" />
             </div>
           </div>
           <div className="mt-8 text-center">
