@@ -6,13 +6,13 @@ A copy of the BIDS demo dataset from hed-javascript, used by `tests/unit/pageFlo
 
 - Source repo: https://github.com/hed-standard/hed-javascript
 - Source path: `tests/bidsDemoData`
-- Commit: 613ece8 (the hed-validator commit locked in `package-lock.json`)
+- Commit: 10d577c (the hed-validator commit locked in `package-lock.json`)
 - 56 files
 
 Copied with:
 
 ```
-git -C H:/Repos/hed-javascript archive 613ece8 tests/bidsDemoData | tar -x --strip-components=1 -C tests/fixtures
+git -C H:/Repos/hed-javascript archive 10d577c tests/bidsDemoData | tar -x --strip-components=1 -C tests/fixtures
 ```
 
 Do not edit these files; refresh them from hed-javascript with the command above when the hed-validator commit
