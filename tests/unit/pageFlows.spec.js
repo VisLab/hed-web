@@ -209,6 +209,34 @@ describe("dataset page", () => {
     issues = issues.concat(await createdDataset.validateTsvFiles());
     expect(bidsCodes(issues)).toEqual([]);
   });
+
+  // A derivative's dataset_description.json listed first must not become the root.
+  it("loads the demo dataset when a derivative description comes first", async () => {
+    const derivativeDescription = new File(
+      [
+        JSON.stringify({
+          Name: "pipeline",
+          BIDSVersion: "1.8.0",
+          DatasetType: "derivative",
+        }),
+      ],
+      "dataset_description.json",
+    );
+    Object.defineProperty(derivativeDescription, "webkitRelativePath", {
+      value: "bidsDemoData/derivatives/pipeline/dataset_description.json",
+    });
+    const selectedFiles = [
+      derivativeDescription,
+      ...readFixtureFolder("bidsDemoData"),
+    ];
+
+    const [createdDataset, createIssues] = await BidsDataset.create(
+      selectedFiles,
+      BidsWebAccessor,
+    );
+    expect(bidsCodes(createIssues)).toEqual([]);
+    expect(createdDataset).toBeTruthy();
+  });
 });
 
 describe("schema version", () => {
