@@ -49,15 +49,13 @@ Test framework: Vitest. Never convert the suite to another framework as a side e
 
 `.status/` is gitignored, so it exists only on the machine that wrote it and never in a fresh clone or worktree.
 
-- `.status/README.md` - the index. Read this first; it lists what is active.
-- `.status/decisions.md` - why things are the way they are. Read before proposing structural changes. Append
-  entries; never rewrite one.
-- `.status/plans/*.md` - active plans. Check the `Status:` header and the `[ ]` / `[x]` markers before starting
-  work.
-- `.status/local-environment.md` - this machine's paths, interpreter, and quirks. Tool-agnostic. Never copy its
-  contents into a committed file.
-- IMPORTANT: do not read `.status/archive/` unless a file is named for you. Nothing new is created at the
-  `.status/` root.
+- `.status/README.md` - current state, unfinished work, and an ordered `Next` list. Read this first.
+- `.status/development_history.md` - what has shipped, newest first, with pointers to the records. History only; append at the top when a PR merges.
+- `.status/decisions.md` - why things are the way they are. Read before proposing structural changes. Append entries; never rewrite one.
+- `.status/plans/*.md` - unfinished plans only. Check the `Status:` header and the `[ ]` / `[x]` markers before starting work. A finished plan moves to `.status/archive/completed_plans/`, renamed `archived_YYYY-MM-DD_<name>` with the day it was archived; split any still-open boxes into a new plan first.
+- `.status/notes/` - dated records, always named `YYYY-MM-DD_<slug>.md`. Write-once.
+- `.status/local-environment.md` - this machine's paths, interpreter, and quirks. Tool-agnostic. Never copy its contents into a committed file.
+- IMPORTANT: do not read `.status/archive/` unless a file is named for you. The `.status/` root holds only `README.md`, `decisions.md`, `development_history.md`, and `local-environment.md`; nothing else is created there.
 
 ## Working agreements
 

@@ -12,15 +12,10 @@
       "Bash(git log *)",
       "Bash(git diff)",
       "Bash(git diff *)",
-      "Bash(git show *)",
       "Bash(git branch)",
       "Bash(git ls-files *)",
-      "Bash(grep *)",
       "Bash(ls)",
       "Bash(ls *)",
-      "Bash(head *)",
-      "Bash(tail *)",
-      "Bash(cat *)",
       "Bash(wc *)"
     ],
     "ask": [
