@@ -11,8 +11,8 @@ A copy of the BIDS demo dataset from hed-javascript, used by `tests/unit/pageFlo
 
 Copied with:
 
-```
-git -C H:/Repos/hed-javascript archive 10d577c tests/bidsDemoData | tar -x --strip-components=1 -C tests/fixtures
+```shell
+git -C ../hed-javascript archive 10d577c tests/bidsDemoData | tar -x --strip-components=1 -C tests/fixtures
 ```
 
 Do not edit these files; refresh them from hed-javascript with the command above when the hed-validator commit
